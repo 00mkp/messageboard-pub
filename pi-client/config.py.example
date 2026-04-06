@@ -1,0 +1,38 @@
+"""
+Configuration template for Pi client
+
+For local testing with mocks:
+- Copy to config_alice.py and config_bob.py
+- Run with: python run_alice.py or python run_bob.py
+
+For actual Pi hardware:
+- Copy to config_alice.py (or config_bob.py)
+- Update messageboard.service to use the correct run_*.py file
+"""
+
+# Which user is this Pi for?
+MY_USERNAME = "alice"  # Change to "alice" or "bob"
+
+# API Configuration
+API_URL = "http://localhost:8000/api/messages"  # Change to your deployed backend URL
+API_KEY = "your-pi-api-key-here"  # Copy from backend .env PI_API_KEY
+
+# Display settings
+POLL_INTERVAL = 60  # seconds between checks (safe with partial refresh)
+USE_MOCK_DISPLAY = True  # Set to False when using real hardware
+USE_PARTIAL_REFRESH = True  # Use fast partial refresh for new messages
+FULL_REFRESH_INTERVAL_HOURS = 12  # Force full refresh every N hours to prevent ghosting
+
+# Display specifications
+DISPLAY_TYPE = "waveshare_3in7"  # 3.7" E-Paper display
+DISPLAY_WIDTH = 480
+DISPLAY_HEIGHT = 280
+DISPLAY_GRAYSCALE = 4  # 4-level grayscale (1=black/white, 4=4 shades)
+
+# Image cleanup settings
+MAX_STORED_IMAGES = 50  # Keep only the most recent N images
+MAX_IMAGE_AGE_DAYS = 30  # Delete images older than N days
+
+# Error handling
+MAX_RETRY_INTERVAL = 300  # Maximum seconds between retries (5 minutes)
+MIN_RETRY_INTERVAL = 60  # Minimum seconds between retries (1 minute)

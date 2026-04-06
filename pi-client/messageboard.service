@@ -1,0 +1,26 @@
+[Unit]
+Description=Message Board E-Ink Display Client
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/messageboard/pi-client
+Environment="PATH=/home/pi/.cargo/bin:/home/pi/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+# Use uv to run the client
+# Change run_alice.py to match your user's entry point (e.g., run_bob.py)
+ExecStart=/home/pi/.cargo/bin/uv run python run_alice.py
+
+# Restart the service if it crashes
+Restart=always
+RestartSec=10
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=messageboard
+
+[Install]
+WantedBy=multi-user.target

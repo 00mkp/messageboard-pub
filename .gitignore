@@ -1,0 +1,61 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+
+# uv
+.uv/
+
+# Database
+*.db
+*.db-journal
+
+# Uploads
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Pi temp files
+pi-client/temp/*
+!pi-client/temp/.gitkeep
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Vite
+frontend/dist/
+frontend/.vite/
+
+# Environment
+.env
+.env.local
+.env.*.local
+*.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+config.py
+*.pem
+*.key
+private/
+
+# Logs
+*.log

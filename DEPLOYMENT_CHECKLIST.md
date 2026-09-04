@@ -115,7 +115,7 @@ railway up
 2. Click on your service
 3. Go to "Settings" → "Domains"
 4. Click "Generate Domain"
-5. Copy the URL (e.g., `https://messageboard-backend-production.up.railway.app`)
+5. Copy the URL (e.g., `https://your-railway-app.up.railway.app`)
 
 ### Step 1.8: Test Backend Health
 
@@ -201,7 +201,7 @@ vercel --prod
 ### Step 2.5: Get Your Frontend URL
 
 Vercel will provide a URL like:
-- `https://messageboard-frontend.vercel.app`
+- `https://your-frontend.vercel.app`
 
 Copy this URL - you'll need it in the next step.
 

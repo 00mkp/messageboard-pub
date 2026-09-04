@@ -121,7 +121,7 @@ crontab -e
 If deploying backend to Railway:
 
 1. **Deploy backend to Railway** (see [DEPLOYMENT_CHECKLIST.md](../DEPLOYMENT_CHECKLIST.md))
-2. **Get your Railway URL** from dashboard (e.g., `https://messageboard-backend-production.up.railway.app`)
+2. **Get your Railway URL** from dashboard (e.g., `https://your-railway-app.up.railway.app`)
 3. **Update Pi config with Railway URL:**
 
    Each Pi gets its own config, named to match its runner: `config_alice.py`

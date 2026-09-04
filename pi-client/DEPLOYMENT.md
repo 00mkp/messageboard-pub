@@ -103,7 +103,7 @@ If you prefer not to use systemd:
 crontab -e
 
 # Add this line at the bottom:
-@reboot sleep 30 && cd /home/pi/messageboard/pi-client && /home/pi/.cargo/bin/uv run python main.py >> /home/pi/messageboard.log 2>&1
+@reboot sleep 30 && cd /home/pi/messageboard/pi-client && /home/pi/.cargo/bin/uv run python run_alice.py >> /home/pi/messageboard.log 2>&1
 
 # Save and exit (Ctrl+X, Y, Enter)
 ```
@@ -121,10 +121,16 @@ crontab -e
 If deploying backend to Railway:
 
 1. **Deploy backend to Railway** (see [DEPLOYMENT_CHECKLIST.md](../DEPLOYMENT_CHECKLIST.md))
-2. **Get your Railway URL** from dashboard (e.g., `https://messageboard-backend-production.up.railway.app`)
+2. **Get your Railway URL** from dashboard (e.g., `https://your-railway-app.up.railway.app`)
 3. **Update Pi config with Railway URL:**
+
+   Each Pi gets its own config, named to match its runner: `config_alice.py`
+   for the Pi running `run_alice.py`, `config_bob.py` for `run_bob.py`.
+
    ```bash
-   nano ~/messageboard/pi-client/config.py
+   cd ~/messageboard/pi-client
+   cp config.py.example config_alice.py   # only needed the first time
+   nano config_alice.py
    # Change API_URL to:
    API_URL = "https://your-app.up.railway.app/api/messages"
    API_KEY = "your-pi-api-key-here"
@@ -145,7 +151,7 @@ If running the backend on a local server:
 
 2. **Update Pi config:**
    ```bash
-   nano ~/messageboard/pi-client/config.py
+   nano ~/messageboard/pi-client/config_alice.py
    # Change API_URL to:
    API_URL = "http://192.168.1.100:8000/api/messages"
    ```
@@ -247,10 +253,10 @@ Save your config files before making changes:
 
 ```bash
 # Backup config
-cp ~/messageboard/pi-client/config.py ~/config.backup
+cp ~/messageboard/pi-client/config_alice.py ~/config.backup
 
 # Restore if needed
-cp ~/config.backup ~/messageboard/pi-client/config.py
+cp ~/config.backup ~/messageboard/pi-client/config_alice.py
 ```
 
 ## Troubleshooting Deployment Issues
@@ -303,7 +309,7 @@ sudo journalctl -u messageboard -f
 
 ```bash
 # Check poll interval isn't too short
-nano ~/messageboard/pi-client/config.py
+nano ~/messageboard/pi-client/config_alice.py
 # POLL_INTERVAL should be >= 60
 
 # Check for infinite loops
